@@ -4,7 +4,7 @@ Vagrant::Config.run do |config|
   # online.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "lucid32"
+  config.vm.box = "base"
 
 
   config.vm.forward_port("http", 80, 8080)
