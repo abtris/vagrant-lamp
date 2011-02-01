@@ -2,20 +2,12 @@ require_recipe "apt"
 require_recipe "apache2"
 require_recipe "mysql::server"
 require_recipe "php::php5"
+require_recipe "git"
 
 # Some neat package (subversion is needed for "subversion" chef ressource)
-%w{ debconf php5-xdebug subversion  }.each do |a_package|
+%w{ debconf php5-xdebug subversion mc htop }.each do |a_package|
   package a_package
 end
-
-# get phpmyadmin conf
-cookbook_file "/tmp/phpmyadmin.deb.conf" do
-  source "phpmyadmin.deb.conf"
-end
-bash "debconf_for_phpmyadmin" do
-  code "debconf-set-selections /tmp/phpmyadmin.deb.conf"
-end
-package "phpmyadmin"
 
 s = "dev-site"
 site = {
@@ -42,6 +34,23 @@ subversion "Webgrind" do
   repository "http://webgrind.googlecode.com/svn/trunk/"
   revision "HEAD"
   destination "/var/www/webgrind"
+  action :sync
+end
+
+# Retrieve adminer
+git "Adminer" do
+  repository "https://github.com/vrana/adminer.git"
+  revision "HEAD"
+  destination "/var/www/adminer/"
+  action :sync
+end
+
+# Latest Zend Framework version
+subversion "Zend" do
+  # repository "http://framework.zend.com/svn/framework/standard/trunk/library/"
+  repository "http://framework.zend.com/svn/framework/standard/tags/release-1.11.3/library/"
+  revision "HEAD"
+  destination "/srv/lib/php/"
   action :sync
 end
 
