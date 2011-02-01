@@ -23,4 +23,4 @@ You can add `XDEBUG_PROFILE` to your GET parameter to generate an xdebug trace, 
 
 You can then investigate at [http://localhost:8080/webgrind/](http://localhost:8080/webgrind/)
 
-Phpmyadmin is available [http://localhost:8080/phpmyadmin/](http://localhost:8080/phpmyadmin/). User `myadmin`, Password `myadmin`
+Phpmyadmin is available [http://localhost:8080/adminer/adminer/](http://localhost:8080/adminer/adminer/). User `myadmin`, Password `myadmin`
