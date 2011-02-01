@@ -3,9 +3,10 @@ require_recipe "apache2"
 require_recipe "mysql::server"
 require_recipe "php::php5"
 require_recipe "git"
+require_recipe "couchdb"
 
 # Some neat package (subversion is needed for "subversion" chef ressource)
-%w{ debconf php5-xdebug subversion mc htop }.each do |a_package|
+%w{ debconf php5-xdebug subversion mc htop curl }.each do |a_package|
   package a_package
 end
 
@@ -64,4 +65,10 @@ execute "add-admin-user" do
       "mysql"
   action :run
   ignore_failure true
+end
+
+# Replace 127.0.0.1 bind port with 0.0.0.0 is necessary for port forwarding
+execute "port-forward-couchdb" do
+  command "sudo sed -i 's/127.0.0.1/0.0.0.0/g' /etc/couchdb/default.ini"
+  action :run
 end

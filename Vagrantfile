@@ -9,6 +9,7 @@ Vagrant::Config.run do |config|
 
   config.vm.forward_port("http", 80, 8080)
   config.vm.forward_port("mysql", 3306, 3306)
+  config.vm.forward_port("couchdb", 5984, 5984)
 
   config.vm.provision :chef_solo do |chef|
      chef.cookbooks_path = "cookbooks"
