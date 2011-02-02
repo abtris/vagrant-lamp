@@ -17,7 +17,7 @@ How
 6. Add this line to your /etc/hosts (or windows equivalent)
     127.0.0.1 www.dev-site.com dev-site.com dev.dev-site-static.com    
 
-7. Sometimes problem with networking with 1st time run (CouchDb), vagrant reload is solution for now
+7. 1st time after run vagrant up need for working couchdb port run vagrant reload for reload port forwarding
 
 That's it, the file in [repo]/public/ are served here : [http://www.dev-site.com:8080/](http://www.dev-site.com:8080/)
 
